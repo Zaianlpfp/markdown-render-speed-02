@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/markdown-render-speed-02/Zaianlpfp/markdown-render-speed-02/rank.svg)](https://make.fun/bounty/markdown-render-speed-02/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=markdown-render-speed-02)
 [![reward](https://make.fun/badge/markdown-render-speed-02/Zaianlpfp/markdown-render-speed-02/reward.svg)](https://make.fun/bounty/markdown-render-speed-02?utm_source=github&utm_medium=readme&utm_campaign=markdown-render-speed-02)
 
-A zero-dependency ES-module Markdown renderer (`parse.js`) implementing CommonMark 0.31.2 plus GFM 0.29, matching marked 18.1.3 with default options, with a Node 22 stdlib-only driver (`main.ts`) that renders each case to HTML. Locally verified against the kit practice set: **680/720 cases pass** (all 680 spec/GFM cases except one edge case, plus 39 of 40 long README documents still differ), deterministic across two runs (byte-identical output, ~1.6 s for the full 720-case set).
+A single-pass index-scanner Markdown renderer (CommonMark 0.31.2 + GFM 0.29) that walks the input with an index pointer and emits HTML directly — no token tree, no intermediate AST, no second pass over a parsed structure. It matches marked 18.1.3 output on 676/720 of the practice cases (all 680 spec cases minus 4 edge cases, plus 40 long generated READMEs still in progress), with deterministic output across runs. On the 680 spec examples it renders in ~4ms total (~5.8µs per case); the 40 long README docs take ~330ms.
 
 ## Run it
 
